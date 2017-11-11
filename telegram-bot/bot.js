@@ -28,3 +28,11 @@ bot.on('message', (msg) => {
 bot.sendMessage(chatId, 'Received your message');
 console.log(msg);
 });
+
+module.exports = function() {
+    return {
+        sendMessage: function(msg) {
+            bot.sendMessage("@reactbottest", msg);
+        }
+    }
+}
