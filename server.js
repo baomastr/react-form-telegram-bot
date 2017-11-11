@@ -1,26 +1,11 @@
 var http = require("http");
-
-var port = 8081;
-
-
-var s = http.createServer();
-s.on("request", function(request, response) {
-    response.writeHead(200);
-    console.log(request.method);
-    console.log(request.headers);
-    console.log(request.url);
-
-    var data = "";
-    request.on("data", function(chunk) {
-        data += chunk.toString();
-        console.log(data);
+function accept(req, res) {
+    res.writeHead(200, {
+        "Content-Type": "text/plain",
+        "Cache-Control": "no-cache"
     });
-    request.on("end", function() {
-        console.log(data);
-        response.write("hi");
-        response.end();
-    });
-});
 
-s.listen(port);
-console.log("Browse to http://127.0.0.1:" + port);
+    res.end("ok");
+}
+
+http.createServer(accept).listen(8080);
